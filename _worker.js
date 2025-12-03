@@ -254,7 +254,7 @@ export default {
                                 if (match) {
                                     节点地址 = match[1];  // IP地址或域名(可能带方括号)
                                     节点端口 = match[2] || "443";  // 端口,默认443
-                                    节点备注 = match[3] || 节点地址;  // 备注,默认为地址本身
+                                    节点备注 = match[3] ? match[3].replace(/^([^|]+)\|官方优选\|(\d+)ms$/,'官方优选⚡️$1 - [ $2ms ]'): 节点地址;// 备注,默认为地址本身
                                 } else {
                                     // 不规范的格式，跳过处理返回null
                                     console.warn(`[订阅内容] 不规范的IP格式已忽略: ${原始地址}`);
@@ -1457,3 +1457,4 @@ async function html1101(host, 访问IP) {
 </body>
 </html>`;
 }
+
